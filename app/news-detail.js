@@ -1,17 +1,28 @@
-import { Heading, Text, Center } from "@gluestack-ui/themed";
+import { Heading, Text, Center,Image,Box } from "@gluestack-ui/themed";
 import { Header } from "../components";
+import { ScrollView as GluestackScrollView } from "@gluestack-ui/themed"; 
 import { useLocalSearchParams } from "expo-router";
 
 const NewsDetail = () => {
   const params = useLocalSearchParams();
   return (
-    <>
+    <GluestackScrollView>
       <Header title={"News"} withBack={true} />
-      <Center flex={1} padding={"$4"}>
-        <Heading>News Detail</Heading>
-        <Text textAlign="center">{params.title}</Text>
-      </Center>
-    </>
+
+     <Image
+                      source={{ uri: params.image }}
+                      w="100%"
+                      alt="Data foto"
+                      h="20%"
+                     
+                    />
+        <Box p={"$4"}>
+        <Text fontSize={"$sm"}>{params.date}</Text>
+        <Heading TextAlign="Left" fontSize={"$md" } fontWeight="bold">{params.title}</Heading>
+        <Text fontSize={"$md"}>{params.content}</Text>
+     </Box>
+
+    </GluestackScrollView>
   );
 };
 
